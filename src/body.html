@@ -1,0 +1,123 @@
+<div class="cur" id="cur" role="presentation">
+  <div class="p l"></div><div class="p r"></div>
+  <div class="t">
+    <span class="eyebrow" id="curEy">Драмы микромира</span>
+    <h1 id="curTitle">Микромир</h1>
+    <p class="sub" id="curSub">Актёры играют клетки. Ход болезни выбирают нейросеть и режиссёр.</p>
+  </div>
+</div>
+
+<nav class="gnav glass" id="gnav" aria-label="Разделы"><button type="button" data-t="stageWrap">Сцена</button><button type="button" data-t="how">Как работает</button><button type="button" data-t="rhythm">Ритм</button><button type="button" data-t="stack">Состав</button><button type="button" data-t="suit">Костюм</button></nav>
+
+<section class="console" id="stageWrap" aria-label="Симуляция сцены в мире клеток">
+  <div class="wrap">
+    <header class="con-hd">
+      <div class="ttl">
+        <span class="eyebrow">Сцена в мире клеток · симуляция</span>
+        <h1>Микромир</h1>
+      </div>
+      <p class="lede">Нейросеть смотрит на актёров и <b class="f">4&nbsp;раза в&nbsp;секунду</b> раздаёт условия на&nbsp;костюмы. Сценарий болезни меняется <b class="s">только на&nbsp;развилках</b>: ИИ предлагает ветку, режиссёр её оставляет или выбирает другую.</p>
+      <div class="clock" aria-live="off"><span>Время сцены</span><b id="clock">00:00</b><em>демо, время сжато ×5</em></div>
+    </header>
+
+    <div class="con-grid">
+      <div class="view" id="view">
+        <canvas id="stage" aria-label="Сцена: актёры-клетки"></canvas>
+        <div class="cam glass" id="camBox"><canvas id="cam" aria-label="Кадр камеры со скелетами актёров"></canvas></div>
+        <div class="legend" aria-hidden="true"><span><i class="h"></i>здорова</span><span><i class="c"></i>раковая</span><span><i class="d"></i>погибла</span></div>
+        <em class="hint" id="hint">Нажмите на актёра</em>
+
+        <div class="fork glass" id="fork" role="dialog" aria-labelledby="forkMsg" aria-live="assertive">
+          <div class="fhd"><span class="eyebrow" id="forkEy">Развилка</span><span class="fleft" id="forkLeft"></span></div>
+          <p id="forkMsg"></p>
+          <div class="facts"><button class="btn pri" id="forkKeep" type="button">Оставить ветку ИИ</button><span class="or" id="forkOr">или выберите другую в пульте</span></div>
+          <i class="ftimer"><i id="forkBar"></i></i>
+        </div>
+
+        <aside class="drawer glass" id="drawer" aria-live="polite">
+          <button class="x" id="dClose" type="button" aria-label="Закрыть">×</button>
+          <div class="hd"><b id="dName"></b><span id="dState"></span></div>
+          <div class="rd">
+            <div><span>Пластины</span><b id="dT"></b></div>
+            <div><span>Вибрация</span><b id="dV"></b></div>
+            <div><span>Цвет</span><b><i id="dC"></i><em id="dCn"></em></b></div>
+          </div>
+          <p class="wl">Почему такие условия</p>
+          <ul class="why" id="dWhy"></ul>
+          <p class="act"><span>Как актёр может это прочитать</span><q id="dHint"></q></p>
+          <button class="btn" id="dImp" type="button">Импровизация: шаг к соседу</button>
+        </aside>
+      </div>
+
+      <aside class="panel" aria-label="Пульт">
+        <section class="blk" aria-labelledby="scnH">
+          <header class="bh"><h2 id="scnH">Сценарий</h2><span class="cad slow"><i></i>медленный цикл · развилки</span></header>
+          <div class="now"><b id="nowName"></b><span id="nowBy"></span></div>
+          <div class="fb"><div class="fbt"><i id="fbFill"></i></div><span id="fbText"></span></div>
+          <ul class="scns" id="scns"></ul>
+          <p class="pnote">Совпадение: насколько динамика клеток на сцене похожа на ветку из базы. Нажмите на ветку, чтобы выбрать её за режиссёра.</p>
+        </section>
+        <ol class="log" id="log" aria-live="polite" aria-label="Журнал сцены"></ol>
+      </aside>
+      <section class="blk strip" aria-labelledby="condH">
+        <header class="bh"><h2 id="condH">Условия на костюмах</h2><span class="cad fast"><i id="tickDot"></i>быстрый цикл · 4 раза в секунду</span><span class="key"><b class="kh">жар</b> / <b class="kc">холод</b> пластин, °C · вибрация</span></header>
+        <ul class="conds" id="conds"></ul>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+{{TRACK}}
+
+<section class="part" id="stack">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Технология</span><h2>Из чего <em>состоит</em></h2></div>
+    <div class="flow rv">
+      <div class="col"><h3 class="ch"><i>1</i>Видит</h3>
+        {{cam}}<span class="dn">↓</span>{{pose}}</div>
+      <div class="hop"><span class="lab">точки тела</span><i class="ln"></i></div>
+      <div class="col"><h3 class="ch"><i>2</i>Решает</h3>
+        {{db}}<span class="dn">↓</span>{{model}}<span class="dn">↓</span>{{td}}</div>
+      <div class="hop"><span class="lab">Wi-Fi<br>UDP</span><i class="ln"></i></div>
+      <div class="col"><h3 class="ch"><i>3</i>Чувствует</h3>
+        {{suitc}}<span class="dn">+</span>{{esp}}<span class="dn">↓</span>{{led}}</div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="suit">
+  <div class="wrap">
+    <div class="suitg">
+      <div class="photo rv" id="photo">
+        <img alt="Костюм на основе Teslasuit" src="data:image/jpeg;base64,{{PHOTO}}">
+        <i class="hs t" style="left:43%;top:24%" data-k="t"></i><i class="hs t" style="left:57%;top:24%" data-k="t"></i>
+        <i class="hs v" style="left:50%;top:35%" data-k="v"></i>
+        <i class="hs v" style="left:27%;top:18%" data-k="v"></i><i class="hs v" style="left:73%;top:17%" data-k="v"></i>
+        <i class="hs v" style="left:38%;top:60%" data-k="v"></i><i class="hs v" style="left:62%;top:60%" data-k="v"></i>
+        <i class="hs v" style="left:40%;top:76%" data-k="v"></i><i class="hs v" style="left:61%;top:76%" data-k="v"></i>
+        <i class="hs l" style="left:50%;top:17%" data-k="l"></i>
+        <i class="hs l" style="left:16%;top:32.5%" data-k="l"></i><i class="hs l" style="left:85%;top:31.7%" data-k="l"></i>
+        <i class="hs c" style="left:50%;top:43.6%" data-k="c"></i>
+      </div>
+      <div class="sg rv">
+        <span class="eyebrow">Костюм клетки</span>
+        <h2>Костюм на основе <em>Teslasuit</em></h2>
+        <p class="sub2">Каждый канал костюма отвечает за одно событие в жизни клетки.</p>
+        <ul class="lg" id="lg">
+          <li class="t" data-k="t"><i></i><div><b>Термопластины</b><span><em class="heat">жар</em> → мутация здоровой в раковую · <em class="cold">холод</em> → клетка гибнет</span></div></li>
+          <li class="v" data-k="v"><i></i><div><b>Вибромоторы</b><span>дрожь → контакт с другой клеткой. Плечи, торс, бёдра, колени</span></div></li>
+          <li class="l" data-k="l"><i></i><div><b>Светодиодная ткань</b><span>цвет → состояние: <em class="hc">бирюзовый</em>, <em class="cc">малиновый</em>, <em class="dc">серый</em></span></div></li>
+          <li class="c" data-k="c"><i></i><div><b>Блок на поясе</b><span>Принимает пакеты по Wi-Fi и плавно ведёт все каналы</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="safe rv"><span>Красная кнопка у каждого актёра</span><span>Предел силы вибрации и температуры</span><span>Согласие актёра и допуск врача</span></div>
+    {{QR}}
+    <footer class="foot">
+      <p class="fin">Занавес.</p>
+      <p class="team">Команда: Олег Никишенков, Вера Тарасова</p>
+    </footer>
+  </div>
+</section>
