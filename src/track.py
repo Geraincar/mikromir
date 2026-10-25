@@ -104,8 +104,7 @@ html='''<section class="part" id="how">
 <section class="part" id="rhythm">
   <div class="wrap">
     <div class="sh rv"><span class="eyebrow">Ритм</span><h2>Условия часто, <em>сценарий редко</em></h2>
-      <p class="shp">Пример сцены на 10 минут. Условия на костюмах меняются непрерывно, сравнение с базой идёт каждую секунду, а ветка меняется только на развилках.</p></div>
-    <div class="tlw rv">'''+tl+'''<p class="swipe">листайте вбок →</p></div>
+      <p class="shp">Условия на костюмах меняются 4 раза в секунду, сравнение с базой идёт каждую секунду, а ветка болезни меняется только на развилках, раз в 1,5–2 минуты.</p></div>
     <div class="why4 rv">'''+''.join('<div class="w"><span class="wn">%d</span><b>%s</b><p>%s</p></div>'%(i,a,b) for i,(a,b) in enumerate(WHY,1))+'''</div>
     <div class="rt rv"><h3>Частоты</h3><dl>'''+''.join('<div><dt>%s</dt><dd>%s</dd></div>'%(a,b) for a,b in RT)+'''</dl>
       <p class="note">В симуляции наверху страницы время сжато примерно в 5 раз: развилка каждые ~25 секунд демо. Окно решения режиссёра не сжимается.</p></div>
